@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+
+    <!--依赖注入-->
+    <!--逻辑层实现类-->
+    <bean id="iocService" class="com.example.aop.service.impl.AopServiceImpl" >
+        <!--<property name="iocDao" ref="iocDao"/> setter 构造器-->
+    </bean>
+
+    <!--数据层实现类-->
+    <bean id="iocDao" class="com.example.aop.dao.AopDaoImpl"></bean>
+
+</beans>

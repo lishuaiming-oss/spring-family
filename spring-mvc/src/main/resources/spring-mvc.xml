@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+     <!--1.基本bean配置实现-->
+      <bean id="userController" class="com.example.mvc.user.controller.UserController"></bean>
+     <!--1.1 配置访问路径与控制器的关系-->
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <!--
+             key:访问路径  value:由ioc管理的实例
+            -->
+            <props>
+                <prop key="/user.do">userController</prop>
+            </props>
+        </property>
+
+    </bean>
+     <!-- 2. 基本beqn配置实现-->
+</beans>

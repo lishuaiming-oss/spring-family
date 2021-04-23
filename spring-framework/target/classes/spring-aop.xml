@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--ioc 容器组件扫描-->
+    <context:component-scan base-package="com.example.aop" >
+      <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
+    </context:component-scan>
+
+    <!--@Value 用于读取 properties 文件中的内容-->
+    <util:properties id="properties"  location="ioc2.properties"></util:properties>
+
+    <!--spring -aop 动态的代理实现-->
+    <!--<aop:config proxy-target-class="true">
+        &lt;!&ndash;切面配置信息&ndash;&gt;
+        <aop:aspect ref="loggerAdvice">
+          &lt;!&ndash;
+            PointCut  切入点
+            JoinPoint  -连接点
+            MethodIntercepter:方法拦截器
+          &ndash;&gt;
+            <aop:pointcut id="methodPointcut" expression="execution(* com.example.aop.service.impl.*.*(..))"/>
+            &lt;!&ndash;建立来连接点与通知实现类联系&ndash;&gt;
+              <aop:after method="after" pointcut-ref="methodPointcut"></aop:after>
+        </aop:aspect>
+    </aop:config>-->
+    <!--aop注解支持-->
+    <aop:aspectj-autoproxy/>
+</beans>

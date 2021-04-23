@@ -1,0 +1,18 @@
+maven-webapp项目
+pom
+ 多模块开发，引spring-webmvc  org.springframework  spring-mvc-core包 单元测试test junit
+            javax.servlet-api
+与servlet对比
+user
+ controller
+   对比:
+   servlet
+      类 extends HttpServlet  方法 service(HttpServletRequest req, HttpServletResponse resp)
+       配置servlet 注解 xml
+   mvc
+     类 implements Controller 方法 handleRequest(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse)
+                                  引包 javax.servlet-api handleRequest(HttpServletRequest req, HttpServletResponse resp)
+     配置mvc
+ dao
+ service
+
