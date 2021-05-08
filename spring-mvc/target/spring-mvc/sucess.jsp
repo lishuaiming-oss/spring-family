@@ -12,5 +12,6 @@
 </head>
 <body>
        恭喜你！登录成功。
+       <% System.out.println("jsp页面"); %>
 </body>
 </html>

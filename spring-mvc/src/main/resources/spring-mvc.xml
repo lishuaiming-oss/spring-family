@@ -2,8 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task
+       http://www.springframework.org/schema/task/spring-task.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
      <!--1.基本bean配置实现-->
   <!--    <bean id="userController" class="com.example.mvc.user.controller.UserController"></bean>
@@ -23,12 +30,33 @@
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
     </bean>-->
-     <!-- 2. 基本beqn配置实现-->
-     <context:component-scan base-package="com.example.mvc.user.controller"/>
-    <!--封装分发器响应-->
+     <!-- 2. 基本beqn配置实现 -->
+    <!--2.1由IOC容器负责扫描实例-->
+     <context:component-scan base-package="com.example.mvc.*.controller"/>
+    <!--2.2封装分发器返回响应-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--2.3  配置springmvc 定时器-->
+     <!--定时器线程池-->
+     <task:scheduler id="taskScheduler" pool-size="10"/>
+     <!--启用注解定时器-->
+    <task:annotation-driven scheduler="taskScheduler"/>
+    <!--启用mvc注解支持-->
+    <mvc:annotation-driven/>
+
+    <!--
+      配置spring mvc 拦截器栈
+    -->
+    <mvc:interceptors>
+        <bean class="com.example.mvc.user.interceptor.UserInterceptor"/>
+        <!--<bean class="com.example.mvc.user.interceptor.TimeInterceptor"/>-->
+        <!--定制拦截器-->
+        <!--<mvc:interceptor>
+            <mvc:mapping path="/role/**"/>
+            <bean class="com.example.mvc.user.interceptor.TimeInterceptor"/>
+        </mvc:interceptor>-->
+    </mvc:interceptors>
 </beans>

@@ -3,19 +3,30 @@ pom
  多模块开发，引spring-webmvc  org.springframework  spring-mvc-core包 单元测试test junit
             javax.servlet-api
 
-与servlet对比
-user
- controller
-   对比:
+与servlet对比 请求响应 收集参数
    servlet
      1. 类 extends HttpServlet  方法 service(HttpServletRequest req, HttpServletResponse resp)
-                                 配置请求
-                                 获取参数
+                                 配置请求 配置servlet xml
+                                 获取参数 作用域
                                  响应 分发器 重定向
-                                  配置servlet xml
+
    mvc
     1. 类 implements Controller 方法 handleRequest(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse)
                                 引包 javax.servlet-api handleRequest(HttpServletRequest req, HttpServletResponse resp)
+                                请求参数用map形式
+                                注解
+                                 @RequestParam(required = false)String name
+                                         name和表单名称相同 表单有name java name="" name=null
+                                         Java空字符串与null的区别
+                                         1、类型
+                                                null表示的是一个对象的值，而不是一个字符串。例如声明一个对象的引用，String a=null。
+                                                “”表示的是一个空字符串，也就是说它的长度为0。例如声明一个字符串String s=”“。
+
+                                         2、内存分配
+                                                String a=null；表示声明一个字符串对象的引用，但指向为null，也就是说还没有指向任何的内存空间。
+                                                String s=”“；表示声明一个字符串类型的引用，其值为“”空字符串，这个s引用指向的是空字符串的内存空间；
+
+                                                在java中变量和引用变量是存在栈中（stack），而对象（new产生的）都是放在堆中（heap）：
 
                                 获取请求  注解 配置     <!--1.基本bean配置实现-->  扫描控制类 建立访问路径类映射 web.xml加载mvc.xml  <!--1.1 配置访问路径与控制器的关系-->
                                 获取参数  直接获取 前后端名称对应
